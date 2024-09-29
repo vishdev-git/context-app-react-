@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 class BookList extends Component {
-    state = {  } 
+    static contextType = ThemeContext
     render() { 
+        const {isLightTheme, light, dark} = this.context;
+        const Theme = isLightTheme ? light : dark; 
         return (
-            <div className="book-list">
+            <div style={{background: Theme.bg, color:Theme.syntax}} className="book-list">
                 <ul>
-                    <li>The Vikings</li>
-                    <li>Harry Potter</li>
-                    <li>Enigma Power of Mind</li>
+                    <li style={{background:Theme.ui}}>The Vikings</li>
+                    <li style={{background:Theme.ui}}>Harry Potter</li>
+                    <li style={{background:Theme.ui}}>Enigma Power of Mind</li>
                 </ul>
             </div>
         );
